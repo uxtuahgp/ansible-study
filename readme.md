@@ -13,4 +13,31 @@ ok: [localhost] => {
 }
 ```
 ### Task 3 ###  
+Создал с помощью Dockerfile контейнеры Ubuntu 22 и Alpine с установленным Python3, чтобы они могли управляться Ansible  
+```
+$ docker ps
+CONTAINER ID   IMAGE           COMMAND     CREATED         STATUS          PORTS     NAMES
+5e7be51e3f2a   alpine_python   "/bin/sh"   2 minutes ago   Up 2 minutes              centos7
+28e30788e105   ubuntu_python   "bash"      21 hours ago    Up 26 minutes             ubuntu
+```
+### Task 4 ###
+```
+ASK [Print OS] ********************************************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "Alpine"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print fact] ******************************************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el"
+}
+ok: [ubuntu] => {
+    "msg": "deb"
+}
+```
+### Task 5 ###  
+
 

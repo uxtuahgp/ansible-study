@@ -39,5 +39,58 @@ ok: [ubuntu] => {
 }
 ```
 ### Task 5 ###  
+Поменял в group_vars в соответствующих подкаталогах examp.yml значение переменной some_fact  
+### Task 6 ###  
+```
+TASK [Print fact] ******************************************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+```
+### Task 7 ###  
+Зашифровал содержимое файлов с переменными командами 
+```
+ansible-vault encrypt group_vars/el/examp.yml
+ansible-vault encrypt group_vars/deb/examp.yml
+```
+### Task 8 ###  
+```
+$ ansible-playbook --ask-vault-pass -i inventory/prod.yml site.yml 
+Vault password: 
+
+PLAY [Print os facts] **************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************************************************
+[WARNING]: Platform linux on host ubuntu is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter could change the meaning of that path.
+See https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [ubuntu]
+[WARNING]: Platform linux on host centos7 is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning of that path.
+See https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html for more information.
+ok: [centos7]
+
+TASK [Print OS] ********************************************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "Alpine"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print fact] ******************************************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+
+PLAY RECAP *************************************************************************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+### Task 9 ###
 
 
